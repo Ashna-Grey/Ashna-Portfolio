@@ -76,8 +76,8 @@
         }
         .contact-button-wrapper {
             position: absolute;
-            top:80px; /* Centers the button horizontally */
-            right: 20px 0; /* Adds spacing between the quick access bar and the button */
+            top: 80px; /* Centers the button horizontally */
+            right: 20px; /* Adds spacing between the quick access bar and the button */
             padding: 10px; /* Adjust this margin to avoid overlap with the quick access bar */
         }
         
@@ -279,7 +279,7 @@
             padding: 20px;
             border-radius: 20px;
             box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8);
-            z-index: 2000;
+            z-index: 1000;
             display: none;
             color: white;
             text-align: center;
@@ -480,46 +480,26 @@
 
     <script>
         // Pop-up functionality
+        const contactButton = document.getElementById('contactButton');
         const lastLine = document.getElementById('last-line');
         const popup = document.getElementById('popup');
         const popupClose = document.getElementById('popup-close');
-        const body = document.body;
+
+        contactButton.addEventListener('click', function() {
+            popup.style.display= 'block';
+            document.body.classList.add('popup-active');
+        });
 
         lastLine.addEventListener('click', function() {
-            popup.style.display = 'block';
-            body.classList.add('popup-active');
-        });
-
-        popupClose.addEventListener('click', function() {
-            popup.style.display = 'none';
-            body.classList.remove('popup-active');
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target === popup) {
-                popup.style.display = 'none';
-                body.classList.remove('popup-active');
-            }
-        });
-
-        // Select the Contact button and the pop-up elements
-        const contactButton = document.getElementById('contactButton');
-        const popup = document.getElementById('popup');
-        const popupClose = document.getElementById('popup-close');
-
-        // When the Contact button is clicked, show the pop-up
-        contactButton.addEventListener('click', function() {
             popup.style.display = 'block';
             document.body.classList.add('popup-active');
         });
 
-        // Close the pop-up when the close button is clicked
         popupClose.addEventListener('click', function() {
             popup.style.display = 'none';
             document.body.classList.remove('popup-active');
         });
 
-        // Close the pop-up when clicking outside the pop-up
         window.addEventListener('click', function(event) {
             if (event.target === popup) {
                 popup.style.display = 'none';
