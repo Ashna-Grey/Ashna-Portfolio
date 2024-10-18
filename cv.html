@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ashna Islam's Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: black;
+            color: #fff;
+            border: 5px dotted #FF13F0;
+            padding-bottom: 40px;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+        /* Font size for bullet points in unordered and ordered lists */
+        ul, ol, li {
+            font-size: 1.2em; /* Adjust size as needed */
+        }
+
+        /* Font size for <h1> heading */
+        h1 {
+            font-size: 3em; /* Adjust size as needed */
+        }
+
+        /* Font size for <h2> heading */
+        h2 {
+            font-size: 2.5em; /* Adjust size as needed */
+        }
+
+        /* Font size for <h3> heading */
+        h3 {
+            font-size: 2em; /* Adjust size as needed */
+        }
+
+        /* Quick Access Bar */
+        .quick-access-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0F2B53;
+            padding: 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #FF13F0;
+        }
+
+        .quick-access-bar a {
+            color: #fcfc03;
+            font-weight: bold;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .quick-access-bar a:hover {
+            background-color: #F28500;
+        }
+
+        /* Search bar container inside quick access bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Search input field */
+        #search {
+            width: 200px;
+            padding: 5px;
+            font-size: 1.2em;
+            border: 2px solid #FF13F0;
+            border-radius: 5px;
+            outline: none;
+            color: white;
+            background-color: black;
+        }
+
+        /* Search button */
+        #search-button {
+            padding: 5px 15px;
+            font-size: 1.2em;
+            margin-left: 10px;
+            border: 2px solid #FF13F0;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #search-button:hover {
+            background-color: #FF13F0;
+            color: black;
+        }
+
+        /* Style the live search suggestion box */
+        .search-suggestions {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: black;
+            border: 1px solid #FF13F0;
+            color: white;
+            width: 100%;
+            display: none;
+            z-index: 10;
+        }
+
+        .search-suggestions p {
+            margin: 0;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #FF13F0;
+        }
+
+        .search-suggestions p:hover {
+            background-color: #333;
+        }
+
+        /* Highlight the matched section */
+        .highlight {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+        }
+
+
+        /* Dropdown for "Other" sections */
+        .other {
+            position: relative;
+            display: inline-block;
+        }
+
+        .other-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #03a9f6;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            text-align: left;
+        }
+
+        .other-dropdown a {
+            display: block;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            background-color: #05bafc;
+            transition: background-color 0.3s ease;
+        }
+
+        .other-dropdown a:hover {
+            background-color: #555;
+        }
+
+        .other:hover .other-dropdown {
+            display: block;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 20px 20px;
+            margin: 40px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* H2 heading style */
+        h2 {
+            font-family: 'Bungee Shade', sans-serif;
+            background: linear-gradient(to bottom, rgb(255, 0, 204), yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-size: 3em;
+        }
+
+        /* Ending Sentence */
+        .ending-sentence {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.4em;
+            cursor: pointer;
+            color: #38ff02;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .ending-sentence:hover {
+            color: yellow;
+        }
+
+        /* Table design with orange to yellow gradient for the entire table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: linear-gradient(to bottom, rgb(255, 94, 0), rgb(246, 255, 0));
+            border: 1px solid black;
+        }
+
+        th {
+            color: rgb(7, 255, 48);
+            font-weight: bold;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgb(255, 0, 0);
+        }
+
+        td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgb(255, 132, 0);
+            background: rgba(255, 0, 0, 0.39);
+        }
+
+        tr:nth-child(even) td {
+            background: rgba(207, 5, 5, 0.6);
+        }
+
+        tr:hover td {
+            background-color: rgba(9, 255, 0, 0.9);
+        }
+
+        /* Pop-up styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            background: radial-gradient(circle at center, #ff69b4, #ff00ffdf, #ff0066b9); /* Neon pink translucent */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.8);
+            z-index: 2000;
+            display: none;
+            color: white;
+            text-align: center;
+            border: 5px dotted yellow;
+        }
+
+        /* Pop-up header styling */
+        .popup h1 {
+            font-family: 'Bungee Shade', sans-serif;
+            font-size: 2.5em;
+            background: linear-gradient(to bottom, rgb(60, 0, 255), yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgb(0, 30, 254);
+            margin-bottom: 20px;
+        }
+
+        /* Pop-up close button */
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: rgb(251, 255, 0);
+        }
+
+        /* Styling for links inside the pop-up */
+        .popup a {
+            color: white; /* Change link color to white */
+            text-decoration: none; /* Remove underline by default */
+        }
+
+        .popup a:hover {
+            text-decoration: underline; /* Add underline on hover for better UX */
+        }   
+
+        /* Highlight for search results */
+        .highlight {
+            background-color: yellow;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Quick Access Bar -->
+    <div class="quick-access-bar">
+        <div>
+            <a href="site.html">Home</a>
+            <a href="#about-me">About Me</a>
+            <a href="#educational-background">Educational Qualifications</a>
+            <!-- "Other" Dropdown -->
+            <div class="other">
+                <a href="javascript:void(0)">Other</a>
+                <div class="other-dropdown">
+                    <a href="#paper-patent-publications">Paper and Patent Publications</a>
+                    <a href="#awards-achievements">Awards and Achievements</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#memberships">Membership</a>
+                    <a href="#research-thrust-area">Research Thrust Area</a>
+                    <a href="#list-of-events">Events</a>
+                    <a href="#poster-paper-presentation">Poster/Paper Presentation</a>
+                    <a href="#courses-completed">Courses Completed</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar Inside Quick Access Bar -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search..." />
+            <button type="submit" id="search-button">Search</button>
+            <div class="search-suggestions" id="suggestions"></div>
+        </div>
+    </div>
+
+    <section id="about-me">
+        <h2>About Me</h2>
+        <h3>Name: Ashna Islam<br>Age: 20<br>Course: B.Tech in CSE (Cyber Security)</h3>
+        <p>The Beauty of Mathematics and Computer Science: My fascination with technology started when I was just 10 years old.</p>
+        <p>My Goals: My ambition shines through my busy schedule. Balancing my studies, writing, and design projects, I thrive on challenges.</p>
+    </section>
+
+    <section id="educational-background">
+        <h2>Educational Qualifications</h2>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Degree/Examination</th>
+                <th>Institution</th>
+                <th>Score</th>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>B.Tech in CSE (Cyber Security)</td>
+                <td>University of Engineering and Management, Kolkata</td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>2022</td>
+                <td>AISSCE</td>
+                <td>Shri Shikshayatan School</td>
+                <td>80%</td>
+            </tr>
+            <tr>
+                <td>2020</td>
+                <td>AISSE</td>
+                <td>Shri Shikshayatan School</td>
+                <td>94%</td>
+            </tr>
+        </table>
+    </section>
+    <section id="paper-patent-publications">
+        <h2>Paper and Patent Publications</h2>
+        <p>No publications yet, but I am actively working towards publishing research in the future.</p>
+    </section>
+
+    <section id="awards-achievements">
+        <h2>Awards and Achievements</h2>
+        <ul>
+            <li><strong>3rd Place in Poster Competition</strong>: Awarded for my poster titled "Application of Generative AI in Medicinal Chemistry".</li>
+        </ul>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <p>Engaged in various coding projects and future aspirations in web development and cybersecurity.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <h3>Teaching Experience</h3>
+        <ul>
+            <li><strong>Computer Science Tutor (2023)</strong>: Taught Computer Science to Class 11 students, covering key concepts like programming, algorithms, and data structures.</li>
+        </ul>
+    </section>
+
+    <section id="memberships">
+        <h2>Membership</h2>
+        <p>Member of IEEE computer society, Microwave Theory and Technology Society, and Women in Engineering.</p>
+    </section>
+
+    <section id="research-thrust-area">
+        <h2>Research Thrust Area</h2>
+        <p>Exploring cyber security topics such as ethical hacking, data privacy, and digital forensics.</p>
+    </section>
+
+    <section id="list-of-events">
+        <h2>Events Attended</h2>
+        <ul>
+            <li>MUN (Model United Nations) - Participated in discussions and debates, enhancing public speaking and critical thinking skills.</li>
+            <li>Smart Maker Festival - Engaged with creative projects and workshops.</li>
+        </ul>
+    </section>
+
+    <section id="poster-paper-presentation">
+        <h2>Poster/Paper Presentation</h2>
+        <ul>
+            <li>3rd Place in Poster Competition for "Application of Generative AI in Medicinal Chemistry".</li>
+        </ul>
+    </section>
+
+    <section id="courses-completed">
+        <h2>Courses Completed</h2>
+        <ul>
+            <li>Python Complete (2021) - Phoenix Computer Education and Training</li>
+            <li>Advanced Python Using Framework (2022) - Phoenix Computer Education and Training</li>
+            <li>Data Analysis Using Python (2022) - White Hat Jr.</li>
+        </ul>
+    </section>
+
+    <!-- Ending Sentence -->
+    <div class="ending-sentence" id="last-line">
+        Click here for more contact information.
+    </div>
+
+    <!-- Pop-up structure -->
+    <div id="popup" class="popup">
+        <span class="popup-close" id="popup-close">&times;</span>
+        <h1>Thank you for your consideration</h1>
+        <p>
+            <a href="tel:+6289886157"><i class="fas fa-phone"></i> Mobile: 6289886157</a>
+        </p>
+        <p>
+            <a href="mailto:ashnaislam03@gmail.com"><i class="fas fa-envelope"></i> Email: ashnaislam03@gmail.com</a>
+        </p>
+        <p>
+            <a href="https://www.linkedin.com/in/ashna-islam-62809b27a" target="_blank"><i class="fab fa-linkedin"></i> Ashna Islam (LinkedIn)</a>
+        </p>
+        <p>
+            <a href="https://www.instagram.com/ash_grey____" target="_blank"><i class="fab fa-instagram"></i> Instagram: ash_grey____</a>
+        </p>
+    </div>
+
+    <script>
+        // Pop-up functionality
+        const lastLine = document.getElementById('last-line');
+        const popup = document.getElementById('popup');
+        const popupClose = document.getElementById('popup-close');
+        const body = document.body;
+
+        lastLine.addEventListener('click', function() {
+            popup.style.display = 'block';
+            body.classList.add('popup-active');
+        });
+
+        popupClose.addEventListener('click', function() {
+            popup.style.display = 'none';
+            body.classList.remove('popup-active');
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === popup) {
+                popup.style.display = 'none';
+                body.classList.remove('popup-active');
+            }
+        });
+        // Sections to be searched
+        const sections = [
+            "About Me", 
+            "Educational Qualifications", 
+            "Paper and Patent Publications", 
+            "Awards and Achievements", 
+            "Projects", 
+            "Experience", 
+            "Membership", 
+            "Research Thrust Area", 
+            "Events Attended", 
+            "Poster/Paper Presentation", 
+            "Courses Completed"
+        ];
+
+        // Get references to the search input, suggestions container, and search button
+        const searchInput = document.getElementById('search');
+        const suggestionsBox = document.getElementById('suggestions');
+        const searchButton = document.getElementById('search-button');
+
+        // Function to filter sections based on the query
+        function filterSections(query) {
+            return sections.filter(section => section.toLowerCase().includes(query.toLowerCase()));
+        }
+
+        // Live search suggestions as the user types
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.trim();
+            suggestionsBox.innerHTML = ''; // Clear previous suggestions
+            
+            if (query) {
+                const matchedSections = filterSections(query);
+                if (matchedSections.length) {
+                    suggestionsBox.style.display = 'block'; // Show the suggestion box
+                    matchedSections.forEach(section => {
+                        const suggestionItem = document.createElement('p');
+                        suggestionItem.textContent = section;
+                        suggestionItem.classList.add('suggestion-item');
+                        suggestionsBox.appendChild(suggestionItem);
+                        // When clicking on a suggestion, scroll to the corresponding section
+                        suggestionItem.addEventListener('click', () => {
+                            scrollToSection(section);
+                            suggestionsBox.style.display = 'none'; // Hide the suggestion box after clicking
+                        });
+                    });
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        // Handle pressing "Enter" to search
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const query = searchInput.value.trim();
+                if (query) {
+                    const matchedSections = filterSections(query);
+                    if (matchedSections.length) {
+                        scrollToSection(matchedSections[0]); // Scroll to the first match
+                    }
+                }
+                suggestionsBox.style.display = 'none'; // Hide suggestions on "Enter"
+                e.preventDefault();
+            }
+        });
+
+        // Scroll to the section corresponding to the matched query
+        function scrollToSection(section) {
+            const allHeadings = document.querySelectorAll(`h2`);
+            let found= false;
+
+            allHeadings.forEach(heading => {
+                if (heading.innerText.trim().toLowerCase() === section.trim().toLowerCase()) {
+                    window.scrollTo({
+                        top: heading.offsetTop - 50, // Adjust offset for fixed navbar
+                        behavior: 'smooth'
+                    });
+                    highlightSection(heading);
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                alert("Section not found!");
+            }
+        }   
+
+        // Highlight the matched section
+        function highlightSection(element) {
+            element.classList.add('highlight'); // Add highlight class
+            setTimeout(() => {
+                element.classList.remove('highlight'); // Remove highlight after 2 seconds
+            }, 2000);
+        }
+
+        // Search button click event
+        searchButton.addEventListener('click', function() {
+            const query = searchInput.value.trim();
+            if (query) {
+                const matchedSections = filterSections(query);
+                if (matchedSections.length) {
+                    scrollToSection(matchedSections[0]); // Scroll to the first match
+                } else {
+                    alert('No match found');
+                }
+            }
+        });
+</script>
+</body>
+</html>
